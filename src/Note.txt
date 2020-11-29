@@ -1,0 +1,28 @@
+﻿Course "Building an API with ASP.NET Core"
+
+Module 2: Pragmatic Rest
+
+Video: Trip Around the Project
+Location: 2:12 of 4:01
+Run command:
+> dotnet-ef database update
+
+Upon running the above command I got the following errors:
+> dotnet ef database update
+Could not execute because the specified command or file was not found.
+Possible reasons for this include:
+  * You misspelled a built-in dotnet command.
+  * You intended to execute a .NET program, but dotnet-ef does not exist.
+  * You intended to run a global tool, but a dotnet-prefixed executable with this name could not be found on the PATH.
+
+As per instructions at https://github.com/MicrosoftDocs/azure-docs/issues/40048 I ran the following:
+> dotnet tool update --global dotnet-ef
+You can invoke the tool using the following command: dotnet-ef
+Tool 'dotnet-ef' (version '5.0.0') was successfully installed.
+
+> dotnet-ef database update
+Build started...
+Build succeeded.
+Applying migration '20180928134504_initialdb'.
+Done.
+
