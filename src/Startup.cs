@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using CoreCodeCamp.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -20,6 +22,8 @@ namespace CoreCodeCamp
         {
             services.AddDbContext<CampContext>();
             services.AddScoped<ICampRepository, CampRepository>();
+
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddControllers();
 
