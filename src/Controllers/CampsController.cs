@@ -77,10 +77,18 @@ namespace CoreCodeCamp.Controllers
             }
         }
 
-        public async Task<ActionResult<CampModel>> Post(CampModel model)
+        [HttpPost]
+        public async Task<ActionResult<CampModel>> CreateNew(CampModel model)
         {
             try
             {
+                // Validate that the Moniker does not exist already
+                var existing = await repository.GetCampAsync(model.Moniker);
+                if (existing != null)
+                {
+                    return BadRequest("Moniker in Use");
+                }
+
                 var location = linkGenerator.GetPathByAction("Get", "Camps", new { moniker = model.Moniker });
                 if (string.IsNullOrWhiteSpace(location))
                 {
@@ -95,7 +103,7 @@ namespace CoreCodeCamp.Controllers
                     return Created(location, this.mapper.Map<CampModel>(camp));
                 }
 
-                return BadRequest();
+                return BadRequest("Unknown Error");
             }
             catch (Exception)
             {
