@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "e305656f-6096-443b-8231-fdd2635a3577",
 		"name": "CoreCodeCamp",
+		"description": "Checked in these API calls to Github https://github.com/usaone/CoreApiFundamentals",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -34,10 +35,39 @@
 		{
 			"name": "CampByMoniker",
 			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"San Diego Code Camp\",\r\n    \"moniker\": \"SD2018\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SearchCampsByDate",
+			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018",
+					"raw": "http://localhost:6600/api/camps/search?theDate=2018-10-18&includeTalks=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -46,7 +76,46 @@
 					"path": [
 						"api",
 						"camps",
-						"ATL2018"
+						"search"
+					],
+					"query": [
+						{
+							"key": "theDate",
+							"value": "2018-10-18"
+						},
+						{
+							"key": "includeTalks",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateCamp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"San Diego Code Camp\",\r\n    \"moniker\": \"SD2018\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps"
 					]
 				}
 			},
