@@ -23,6 +23,7 @@ namespace CoreCodeCamp.Data
                 .ForMember(c => c.Country, o => o.MapFrom(m => m.Location.Country));
             this.CreateMap<Talk, TalkModel>();
             this.CreateMap<Speaker, SpeakerModel>();
+            this.CreateMap<CampModel, Camp>();
         }
 
     }

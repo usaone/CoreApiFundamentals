@@ -3,6 +3,7 @@ using CoreCodeCamp.Data;
 using CoreCodeCamp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,11 +18,13 @@ namespace CoreCodeCamp.Controllers
     {
         private readonly ICampRepository repository;
         private readonly IMapper mapper;
+        private readonly LinkGenerator linkGenerator;
 
-        public CampsController(ICampRepository repository, IMapper mapper)
+        public CampsController(ICampRepository repository, IMapper mapper, LinkGenerator linkGenerator)
         {
             this.repository = repository;
             this.mapper = mapper;
+            this.linkGenerator = linkGenerator;
         }
 
         [HttpGet]
@@ -78,8 +81,21 @@ namespace CoreCodeCamp.Controllers
         {
             try
             {
-                // Create a new Camp
-                return Ok(model);
+                var location = linkGenerator.GetPathByAction("Get", "Camps", new { moniker = model.Moniker });
+                if (string.IsNullOrWhiteSpace(location))
+                {
+                    return BadRequest("Could not use current moniker");
+                }
+
+                var camp = this.mapper.Map<Camp>(model);
+                repository.Add(camp);
+
+                if (await repository.SaveChangesAsync())
+                {
+                    return Created(location, this.mapper.Map<CampModel>(camp));
+                }
+
+                return BadRequest();
             }
             catch (Exception)
             {

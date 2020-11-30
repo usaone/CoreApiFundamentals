@@ -99,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"San Diego Code Camp\",\r\n    \"moniker\": \"SD2018\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SP2018\",\r\n    \"eventDate\": \"2018-05-05\",\r\n    \"length\": 1,\r\n    \"venueName\": \"SP Community College\",\r\n    \"PostalCode\": \"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
