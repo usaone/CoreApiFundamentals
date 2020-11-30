@@ -245,7 +245,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018/talks?includeSpeakers=true",
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -256,12 +256,6 @@
 						"camps",
 						"ATL2018",
 						"talks"
-					],
-					"query": [
-						{
-							"key": "includeSpeakers",
-							"value": "true"
-						}
 					]
 				}
 			},
@@ -287,7 +281,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1?includeSpeakers=true",
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -299,12 +293,6 @@
 						"ATL2018",
 						"talks",
 						"1"
-					],
-					"query": [
-						{
-							"key": "includeSpeakers",
-							"value": "true"
-						}
 					]
 				}
 			},
@@ -318,8 +306,8 @@
 					"script": {
 						"id": "dd2153a9-4174-4bb1-b0b9-2b51de5cb754",
 						"exec": [
-							"pm.test(\"Status code is 200\", function () {\r",
-							"    pm.response.to.have.status(200);\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
 							"});"
 						],
 						"type": "text/javascript"

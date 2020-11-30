@@ -28,11 +28,11 @@ namespace CoreCodeCamp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<TalkModel[]>> Get(string moniker, bool includeSpeakers = false)
+        public async Task<ActionResult<TalkModel[]>> Get(string moniker)
         {
             try
             {
-                var talks = await this.repository.GetTalksByMonikerAsync(moniker, includeSpeakers);
+                var talks = await this.repository.GetTalksByMonikerAsync(moniker, true);
                 return mapper.Map<TalkModel[]>(talks);
             }
             catch (Exception)
@@ -42,11 +42,11 @@ namespace CoreCodeCamp.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<TalkModel>> Get(string moniker, int id, bool includeSpeakers = false)
+        public async Task<ActionResult<TalkModel>> Get(string moniker, int id)
         {
             try
             {
-                var talk = await this.repository.GetTalkByMonikerAsync(moniker, id, includeSpeakers);
+                var talk = await this.repository.GetTalkByMonikerAsync(moniker, id, true);
                 if (talk == null) return NotFound("Unable to find a talk");
 
                 return mapper.Map<TalkModel>(talk);
