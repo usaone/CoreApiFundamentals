@@ -245,7 +245,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018/talks",
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks?includeSpeakers=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -256,6 +256,12 @@
 						"camps",
 						"ATL2018",
 						"talks"
+					],
+					"query": [
+						{
+							"key": "includeSpeakers",
+							"value": "true"
+						}
 					]
 				}
 			},
@@ -281,7 +287,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1",
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1?includeSpeakers=true",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -293,6 +299,57 @@
 						"ATL2018",
 						"talks",
 						"1"
+					],
+					"query": [
+						{
+							"key": "includeSpeakers",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateTalkForMoniker",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd2153a9-4174-4bb1-b0b9-2b51de5cb754",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Building APIs\",\r\n    \"abstract\": \"Bulding APIs can be fun\",\r\n    \"level\": 100,\r\n    \"speaker\": {\r\n        \"speakerId\": 1\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"ATL2018",
+						"talks"
 					]
 				}
 			},
