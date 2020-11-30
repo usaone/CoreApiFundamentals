@@ -41,9 +41,20 @@ namespace CoreCodeCamp.Controllers
             }
         }
 
-        private ActionResult<TalkModel[]> StatusCode(object statuscodes)
+        [HttpGet("{id:int}")]
+        public async Task<ActionResult<TalkModel>> Get(string moniker, int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var talk = await this.repository.GetTalkByMonikerAsync(moniker, id);
+                if (talk == null) return NotFound("Unable to find a talk");
+
+                return mapper.Map<TalkModel>(talk);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get Talk");
+            }
         }
     }
 }
