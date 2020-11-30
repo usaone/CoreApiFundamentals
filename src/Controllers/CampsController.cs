@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 namespace CoreCodeCamp.Controllers
 {
     [Route("api/[controller]")]
+    [ApiController]
     public class CampsController : ControllerBase
     {
         private readonly ICampRepository repository;
@@ -73,7 +74,7 @@ namespace CoreCodeCamp.Controllers
             }
         }
 
-        public async Task<ActionResult<CampModel>> Post([FromBody]CampModel model)
+        public async Task<ActionResult<CampModel>> Post(CampModel model)
         {
             try
             {
