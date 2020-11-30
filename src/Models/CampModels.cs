@@ -21,5 +21,7 @@ namespace CoreCodeCamp.Models
         public string StateProvince { get; set; }
         public string PostalCode { get; set; }
         public string Country { get; set; }
+
+        public ICollection<TalkModel> Talks { get; set; }
     }
 }
