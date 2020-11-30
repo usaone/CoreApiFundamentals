@@ -99,7 +99,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SP2018\",\r\n    \"eventDate\": \"2018-05-05\",\r\n    \"length\": 1,\r\n    \"venueName\": \"SP Community College\",\r\n    \"PostalCode\": \"12345\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SD2018\",\r\n    \"eventDate\": \"2018-05-05\",\r\n    \"length\": 1,\r\n    \"venueName\": \"SD Community College\",\r\n    \"PostalCode\": \"12345\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -116,6 +116,36 @@
 					"path": [
 						"api",
 						"camps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateCamp",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SD2018\",\r\n    \"eventDate\": \"2018-05-05T00:00:00\",\r\n    \"length\": 3,\r\n    \"venue\": \"SD Community College\",\r\n    \"locationAddress1\": \"987 Main Street\",\r\n    \"locationAddress2\": null,\r\n    \"locationAddress3\": null,\r\n    \"locationCityTown\": \"San Diego\",\r\n    \"locationStateProvince\": \"CA\",\r\n    \"locationPostalCode\": \"98765\",\r\n    \"locationCountry\": \"USA\",\r\n    \"talks\": []\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps/SD2018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"SD2018"
 					]
 				}
 			},

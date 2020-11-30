@@ -102,13 +102,36 @@ namespace CoreCodeCamp.Controllers
                 {
                     return Created(location, this.mapper.Map<CampModel>(camp));
                 }
-
-                return BadRequest("Unknown Error");
             }
             catch (Exception)
             {
                 return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
+
+            return BadRequest("Unknown Failure");
+        }
+
+        [HttpPut("{moniker}")]
+        public async Task<ActionResult<CampModel>> Put(string moniker, CampModel model)
+        {
+            try
+            {
+                var oldCamp = await repository.GetCampAsync(moniker);
+                if (oldCamp == null) return NotFound($"Could not find a camp with moniker of {moniker}");
+
+                this.mapper.Map(model, oldCamp);
+
+                if (await repository.SaveChangesAsync())
+                {
+                    return this.mapper.Map<CampModel>(oldCamp);
+                }
+            }
+            catch (Exception)
+            {
+                return this.StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+            }
+
+            return BadRequest("Unknown Failure");
         }
     }
 }
