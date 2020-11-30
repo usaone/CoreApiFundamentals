@@ -28,11 +28,11 @@ namespace CoreCodeCamp.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<TalkModel[]>> Get(string moniker)
+        public async Task<ActionResult<TalkModel[]>> Get(string moniker, bool includeSpeakers = false)
         {
             try
             {
-                var talks = await this.repository.GetTalksByMonikerAsync(moniker);
+                var talks = await this.repository.GetTalksByMonikerAsync(moniker, includeSpeakers);
                 return mapper.Map<TalkModel[]>(talks);
             }
             catch (Exception)
@@ -42,11 +42,11 @@ namespace CoreCodeCamp.Controllers
         }
 
         [HttpGet("{id:int}")]
-        public async Task<ActionResult<TalkModel>> Get(string moniker, int id)
+        public async Task<ActionResult<TalkModel>> Get(string moniker, int id, bool includeSpeakers = false)
         {
             try
             {
-                var talk = await this.repository.GetTalkByMonikerAsync(moniker, id);
+                var talk = await this.repository.GetTalkByMonikerAsync(moniker, id, includeSpeakers);
                 if (talk == null) return NotFound("Unable to find a talk");
 
                 return mapper.Map<TalkModel>(talk);
@@ -54,6 +54,43 @@ namespace CoreCodeCamp.Controllers
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get Talk");
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<TalkModel>> Post(string moniker, TalkModel model)
+        {
+            try
+            {
+                var camp = await repository.GetCampAsync(moniker);
+                if (camp == null) return BadRequest("Camp does not exist");
+
+                var talk = mapper.Map<Talk>(model);
+                talk.Camp = camp;
+
+                if (model.Speaker == null) return BadRequest("Speaker ID is required");
+                var speaker = await repository.GetSpeakerAsync(model.Speaker.SpeakerId);
+                if (speaker == null) return BadRequest("Speaker could not be found");
+                talk.Speaker = speaker;
+
+                repository.Add(talk);
+
+                if (await repository.SaveChangesAsync())
+                {
+                    var url = linkGenerator.GetPathByAction(HttpContext,
+                        "Get",
+                        values: new { moniker, id = talk.TalkId });
+
+                    return Created(url, mapper.Map<TalkModel>(talk));
+                }
+                else
+                {
+                    return BadRequest("Failed to save new Talk");
+                }
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
             }
         }
     }
