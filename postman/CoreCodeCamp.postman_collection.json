@@ -2,12 +2,26 @@
 	"info": {
 		"_postman_id": "e305656f-6096-443b-8231-fdd2635a3577",
 		"name": "CoreCodeCamp",
-		"description": "Checked in these API calls to Github https://github.com/usaone/CoreApiFundamentals",
+		"description": "All the CoreCodeCamp related API Requests from Postman are saved to github at https://github.com/usaone/CoreApiFundamentals.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
 			"name": "CampsList",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "0cfe9468-dac6-4c1b-b465-1adf70d44543",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -33,7 +47,64 @@
 			"response": []
 		},
 		{
+			"name": "CreateCamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "aab08a8f-7673-42d5-bd7e-c3daa732c4cd",
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SP2018B\",\r\n    \"eventDate\": \"2018-05-05\",\r\n    \"length\": 1,\r\n    \"venue\": \"SP Community College\",\r\n    \"locationPostalCode\": \"12345\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CampByMoniker",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "575d1303-f296-469e-9ec4-e8a6b978e6d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -67,6 +138,20 @@
 		},
 		{
 			"name": "SearchCampsByDate",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d648631f-9426-456d-89f0-825187f0cc06",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -97,36 +182,21 @@
 			"response": []
 		},
 		{
-			"name": "CreateCamp",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Sao Paulo Code Camp\",\r\n    \"moniker\": \"SP2018B\",\r\n    \"eventDate\": \"2018-05-05\",\r\n    \"length\": 1,\r\n    \"venue\": \"SP Community College\",\r\n    \"locationPostalCode\": \"12345\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "http://localhost:6600/api/camps",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "6600",
-					"path": [
-						"api",
-						"camps"
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "UpdateCamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3bbbf3d0-1fe3-483c-9db1-1cdd4b1dc2b3",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "DELETE",
 				"header": [],
@@ -156,7 +226,21 @@
 			"response": []
 		},
 		{
-			"name": "GetTalksByMoniker",
+			"name": "GetTalkByMoniker",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "3d558d3a-b472-454d-95ec-3b2940dd4c4e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -172,6 +256,43 @@
 						"camps",
 						"ATL2018",
 						"talks"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTalkByMonikerAndTalkId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd2153a9-4174-4bb1-b0b9-2b51de5cb754",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"ATL2018",
+						"talks",
+						"1"
 					]
 				}
 			},
@@ -195,17 +316,7 @@
 				"id": "687cafa0-4e95-4236-a8e6-0bb5fa1f1397",
 				"type": "text/javascript",
 				"exec": [
-					"pm.test(\"CampsListWithoutTalks\", function() {",
-					"    pm.response.to.have.status(200);",
-					"});",
-					"",
-					"pm.test(\"CampsListIncludingTalks\", function() {",
-					"    pm.response.to.have.status(200);",
-					"});",
-					"",
-					"pm.test(\"CampByMoniker\", function() {",
-					"    pm.response.to.have.status(200);",
-					"});"
+					""
 				]
 			}
 		}
