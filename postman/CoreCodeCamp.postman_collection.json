@@ -34,12 +34,15 @@
 		},
 		{
 			"name": "CampByMoniker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"San Diego Code Camp\",\r\n    \"moniker\": \"SD2018\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -47,7 +50,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:6600/api/camps",
+					"raw": "http://localhost:6600/api/camps/SP2018B",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -55,7 +58,8 @@
 					"port": "6600",
 					"path": [
 						"api",
-						"camps"
+						"camps",
+						"SP2018B"
 					]
 				}
 			},
