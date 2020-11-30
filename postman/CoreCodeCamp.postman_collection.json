@@ -1,0 +1,89 @@
+{
+	"info": {
+		"_postman_id": "e305656f-6096-443b-8231-fdd2635a3577",
+		"name": "CoreCodeCamp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CampsList",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6600/api/camps?includeTalks=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps"
+					],
+					"query": [
+						{
+							"key": "includeTalks",
+							"value": "false"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CampByMoniker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6600/api/camps/ATL2018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"ATL2018"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "f70eb8db-29d6-4697-8427-a26aaf7130db",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "687cafa0-4e95-4236-a8e6-0bb5fa1f1397",
+				"type": "text/javascript",
+				"exec": [
+					"pm.test(\"CampsListWithoutTalks\", function() {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"CampsListIncludingTalks\", function() {",
+					"    pm.response.to.have.status(200);",
+					"});",
+					"",
+					"pm.test(\"CampByMoniker\", function() {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
