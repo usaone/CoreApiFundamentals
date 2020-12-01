@@ -281,7 +281,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:6600/api/camps/ATL2018/talks/1",
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -292,7 +292,7 @@
 						"camps",
 						"ATL2018",
 						"talks",
-						"1"
+						"3"
 					]
 				}
 			},
@@ -430,6 +430,41 @@
 						"ATL2018",
 						"talks",
 						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OperationReloadConfig",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "9c99a82b-a47a-4145-bb15-530959bf46ac",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "OPTIONS",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6600/api/operations/reloadconfig",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"operations",
+						"reloadconfig"
 					]
 				}
 			},
