@@ -94,7 +94,7 @@
 			"response": []
 		},
 		{
-			"name": "CampByMoniker",
+			"name": "CampByMoniker (Using Default API Version)",
 			"event": [
 				{
 					"listen": "test",
@@ -125,7 +125,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:6600/api/camps/SP2018B",
+					"raw": "http://localhost:6600/api/camps/ATL2018",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -134,7 +134,7 @@
 					"path": [
 						"api",
 						"camps",
-						"SP2018B"
+						"ATL2018"
 					]
 				}
 			},
@@ -469,6 +469,59 @@
 						"api",
 						"operations",
 						"reloadconfig"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CampByMonikerVer1.1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "575d1303-f296-469e-9ec4-e8a6b978e6d0",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps/ATL2018?api-version=1.1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"ATL2018"
+					],
+					"query": [
+						{
+							"key": "api-version",
+							"value": "1.1"
+						}
 					]
 				}
 			},
