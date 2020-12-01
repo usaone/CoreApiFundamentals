@@ -25,7 +25,10 @@ namespace CoreCodeCamp
 
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-            services.AddApiVersioning();
+            services.AddApiVersioning(opt => 
+            {
+                opt.DefaultApiVersion = new ApiVersion(1, 1);
+            });
 
             services.AddControllers();
 
