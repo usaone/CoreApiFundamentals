@@ -28,6 +28,7 @@ namespace CoreCodeCamp
             services.AddApiVersioning(opt => 
             {
                 opt.DefaultApiVersion = new ApiVersion(1, 1);
+                opt.ReportApiVersions = true;
             });
 
             services.AddControllers();
