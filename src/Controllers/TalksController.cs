@@ -90,7 +90,7 @@ namespace CoreCodeCamp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get Talk");
             }
         }
 
@@ -124,9 +124,34 @@ namespace CoreCodeCamp.Controllers
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Database Failure");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get Talk");
             }
 
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(string moniker, int id)
+        {
+            try
+            {
+                var talk = await repository.GetTalkByMonikerAsync(moniker, id, true);
+                if (talk == null) return BadRequest("Could not find the Talk to delete");
+                repository.Delete(talk);
+
+                if (await repository.SaveChangesAsync())
+                {
+                    return Ok();
+                }
+                else
+                {
+                    return BadRequest("Failed to update database");
+                }
+
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Failed to get Talk");
+            }
         }
     }
 }

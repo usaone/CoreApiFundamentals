@@ -351,8 +351,8 @@
 					"script": {
 						"id": "dd2153a9-4174-4bb1-b0b9-2b51de5cb754",
 						"exec": [
-							"pm.test(\"Status code is 201\", function () {\r",
-							"    pm.response.to.have.status(201);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
 							"});"
 						],
 						"type": "text/javascript"
@@ -364,7 +364,53 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"talkId\": 3,\r\n    \"title\": \"Building APIs\",\r\n    \"abstract\": \"Building APIs can be complicated if you have a lot of rules.\",\r\n    \"level\": 200,\r\n    \"speaker\": {\r\n        \"speakerId\": 2\r\n        }\r\n}",
+					"raw": "{\r\n    \"talkId\": 3,\r\n    \"title\": \"Building APIs\",\r\n    \"abstract\": \"Building APIs can be complicated if you have a lot of rules.\",\r\n    \"level\": 200,\r\n    \"speaker\": {\r\n        \"speakerId\": 1\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:6600/api/camps/ATL2018/talks/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6600",
+					"path": [
+						"api",
+						"camps",
+						"ATL2018",
+						"talks",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTalk",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "dd2153a9-4174-4bb1-b0b9-2b51de5cb754",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
